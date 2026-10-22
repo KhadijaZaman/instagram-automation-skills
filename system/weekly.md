@@ -8,6 +8,12 @@ rows Khadija marks `approved`.
 Sheet: `1ARiXXigTeGEHhrLYptkGRec0JJAmgDw165fMRLeKjeA`
 (tabs: Posts, Replies, Analytics, How it works). Timezone: Asia/Karachi.
 
+## If the Google Sheets connector is missing
+If no `mcp__Google_Sheets__*` tools are available, do everything else anyway
+and put the drafted rows (all columns) in your final message as a table, then
+say in one line: "Sheet not updated: add the Google Sheets connector to this
+scheduled task in claude.ai." Never stop silently.
+
 ## 0. Setup
 1. `bash system/bootstrap.sh` from the repo root. It installs all ig-* skills
    and copies `system/state/niche.md` and `voice.md` into `~/.claude/instagram/`.

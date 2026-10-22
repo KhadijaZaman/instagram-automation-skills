@@ -5,6 +5,8 @@ Khadija marks `approved` in the Replies tab.
 
 Sheet: `1ARiXXigTeGEHhrLYptkGRec0JJAmgDw165fMRLeKjeA`, tab Replies.
 
+0. If no `mcp__Google_Sheets__*` tools are available, put the drafts in your
+   final message instead and say the connector is missing.
 1. `bash system/bootstrap.sh`. If IG_ACCESS_TOKEN is missing, stop and say so
    in one line.
 2. Read the Replies tab. Write every existing comment_id to `known.txt`.
