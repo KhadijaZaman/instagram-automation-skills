@@ -30,10 +30,18 @@ python3 beats.py script.txt --target 30     # timed beat sheet before you shoot
    one niche, for one audience.
 1. Read `~/.claude/instagram/voice.md` if it exists. That is the user's voice
    profile: how they talk on camera, what they never say, who they are talking
-   to. If it does not exist, ask for **three of their own reels**, transcribe or
-   read them, infer the voice, and write the file. A script in the wrong voice
-   is unusable, because they have to say it out loud.
-2. Read `hooks.json` in this folder. 26 formulas, each with a template, a filled
+   to. If it does not exist, copy `voice-template.md` from this folder to
+   `~/.claude/instagram/voice.md`. It is Khadija's spoken voice, cut from
+   `khadija-voice`. If the user has three of their own reels, transcribe them
+   and correct the file against how they actually talk. A script in the wrong
+   voice is unusable, because they have to say it out loud.
+2. Read `hooks.json` in this folder. In this voice, prefer the formulas that
+   report rather than shout: #6 Receipt, #7 Wrong Way Right Way, #8 Insider
+   Leak, #13 Before And After, #16 Verbatim Question, #17 Head To Head (only if
+   both were really run), #18 Cold Open Demo, #23 Statistic (sourced). Treat
+   #2 Negative Command, #14 Callout and #22 Contrarian Flip as high-risk
+   stances and flag them.
+   Then read `hooks.json` in full. 26 formulas, each with a template, a filled
    example, the on-screen version, what it is for, and how it gets ruined.
    Four of them are in there because they kept turning up in real hooks, not
    because they completed a pattern.
@@ -96,6 +104,10 @@ concrete in them, no loop. Re-run until it is clean.
 the Point one claim, does the Reason name a cost, is the Example real, does the
 last line restate the Point?
 
+**4c. Voice pass.** Run the voice rules below, or `khadija-voice` if it is
+installed. Read the script aloud in her register: if a line sounds like a
+guru reel, rewrite it as a practitioner reporting what she saw.
+
 **5. Humanize it.** Run the script through `/ig-human` before showing it. A
 written-sounding line is obvious the moment someone says it out loud.
 
@@ -118,6 +130,37 @@ Reply "yes" to log it, or tell me what to change.
 **7. Never publish.** This skill produces a script. The user shoots it and
 posts it. On "yes", append to `~/.claude/instagram/log.md` with the date, the
 hook formula used and the first line, so `/ig-audit` has a history later.
+
+## Voice pass (Khadija's voice)
+
+If the `khadija-voice` skill is installed, run it in polish mode on every line
+the user will say or post, after the draft and before `/ig-human`. If it is
+not, or if `~/.claude/instagram/voice.md` exists, apply these. They are the
+Instagram cut of `khadija-voice`, Appendix A.
+
+- **The voice:** a measured technical practitioner walking a peer through what
+  she has been looking at. A coffee chat with someone who knows the field, not
+  a guru, not a hype reel.
+- **Open with something real:** a specific scene ("I spent last Tuesday inside
+  our citation data"), a specific finding with its sample ("Across 1,200 SaaS
+  pages we tracked..."), a named source and their concept, or a tension (two
+  things that can't both be true). Never a topic opener, "it's no secret",
+  "most people don't realize", or "3 years ago I was X".
+- **Vary the rhythm.** Mix one long, flowing sentence with short ones. Never
+  three short punchy lines in a row when spoken; that is the guru cadence.
+  On-screen text cards can stay short.
+- **Name the source.** "Koray Gubur calls this topical borders", not "experts
+  say". Numbers are hers or marked `{{verify}}`.
+- **Honest hedges are fine, weasel hedges are not.** "From what we're seeing",
+  "across our dataset" yes. "Could potentially", "it's worth noting" no.
+- **Close with substance.** "If you're seeing something different in your
+  data, tell me" beats "Agree?". An ask is allowed when it delivers something
+  real (comment a keyword, get the checklist). Never bare engagement bait.
+- **No decorative emojis, no hype words** (game-changer, unlock, leverage,
+  supercharge, seamless).
+- **Default to low-risk stances** (methodological, observational,
+  definitional). A direct contradiction like "Stop buying GEO" gets
+  `[RISK: strong public stance, confirm before posting]`.
 
 ## Copy pass (from the copywriting skill)
 

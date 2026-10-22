@@ -66,6 +66,37 @@ Order across the week so the strongest claim goes first, the story lands
 midweek, and the mechanism goes last, when the people who liked the earlier
 ones are watching for it.
 
+## Voice pass (Khadija's voice)
+
+If the `khadija-voice` skill is installed, run it in polish mode on every line
+the user will say or post, after the draft and before `/ig-human`. If it is
+not, or if `~/.claude/instagram/voice.md` exists, apply these. They are the
+Instagram cut of `khadija-voice`, Appendix A.
+
+- **The voice:** a measured technical practitioner walking a peer through what
+  she has been looking at. A coffee chat with someone who knows the field, not
+  a guru, not a hype reel.
+- **Open with something real:** a specific scene ("I spent last Tuesday inside
+  our citation data"), a specific finding with its sample ("Across 1,200 SaaS
+  pages we tracked..."), a named source and their concept, or a tension (two
+  things that can't both be true). Never a topic opener, "it's no secret",
+  "most people don't realize", or "3 years ago I was X".
+- **Vary the rhythm.** Mix one long, flowing sentence with short ones. Never
+  three short punchy lines in a row when spoken; that is the guru cadence.
+  On-screen text cards can stay short.
+- **Name the source.** "Koray Gubur calls this topical borders", not "experts
+  say". Numbers are hers or marked `{{verify}}`.
+- **Honest hedges are fine, weasel hedges are not.** "From what we're seeing",
+  "across our dataset" yes. "Could potentially", "it's worth noting" no.
+- **Close with substance.** "If you're seeing something different in your
+  data, tell me" beats "Agree?". An ask is allowed when it delivers something
+  real (comment a keyword, get the checklist). Never bare engagement bait.
+- **No decorative emojis, no hype words** (game-changer, unlock, leverage,
+  supercharge, seamless).
+- **Default to low-risk stances** (methodological, observational,
+  definitional). A direct contradiction like "Stop buying GEO" gets
+  `[RISK: strong public stance, confirm before posting]`.
+
 ## Output
 
 ```

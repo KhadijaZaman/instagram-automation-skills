@@ -120,19 +120,54 @@ If not, these are the ones that matter here:
   gains in time, money or risk.
 - No em dashes, no "it's not X, it's Y", no "whether you're A or B".
 
+## Voice pass (Khadija's voice)
+
+If the `khadija-voice` skill is installed, run it in polish mode on every line
+the user will say or post, after the draft and before `/ig-human`. If it is
+not, or if `~/.claude/instagram/voice.md` exists, apply these. They are the
+Instagram cut of `khadija-voice`, Appendix A.
+
+- **The voice:** a measured technical practitioner walking a peer through what
+  she has been looking at. A coffee chat with someone who knows the field, not
+  a guru, not a hype reel.
+- **Open with something real:** a specific scene ("I spent last Tuesday inside
+  our citation data"), a specific finding with its sample ("Across 1,200 SaaS
+  pages we tracked..."), a named source and their concept, or a tension (two
+  things that can't both be true). Never a topic opener, "it's no secret",
+  "most people don't realize", or "3 years ago I was X".
+- **Vary the rhythm.** Mix one long, flowing sentence with short ones. Never
+  three short punchy lines in a row when spoken; that is the guru cadence.
+  On-screen text cards can stay short.
+- **Name the source.** "Koray Gubur calls this topical borders", not "experts
+  say". Numbers are hers or marked `{{verify}}`.
+- **Honest hedges are fine, weasel hedges are not.** "From what we're seeing",
+  "across our dataset" yes. "Could potentially", "it's worth noting" no.
+- **Close with substance.** "If you're seeing something different in your
+  data, tell me" beats "Agree?". An ask is allowed when it delivers something
+  real (comment a keyword, get the checklist). Never bare engagement bait.
+- **No decorative emojis, no hype words** (game-changer, unlock, leverage,
+  supercharge, seamless).
+- **Default to low-risk stances** (methodological, observational,
+  definitional). A direct contradiction like "Stop buying GEO" gets
+  `[RISK: strong public stance, confirm before posting]`.
+
 ## Output
 
 ```
 POV READY
 niche:      AEO / GEO for B2B SaaS marketing teams
 enemy:      treating GEO as a separate channel from SEO
-move:       Methodological (low risk)
-POV:        "Stop buying GEO. Fix your SEO first."
+move:       Definitional (low risk)
+POV:        "GEO starts in the search index, not in a new tool."
 
-P  Stop buying GEO. Fix your SEO first.
-R  AI answers pull from pages search already trusts. Not findable, not quoted.
-E  {{your proof: e.g. how many cited pages already ranked top 10}}
-P  Fix the SEO. The citations follow. Comment AUDIT for the checklist.
+P  GEO starts in the search index, not in a new tool.
+R  AI answers pull from pages search already trusts, so a page that isn't
+   findable doesn't get quoted, however it's formatted.
+E  {{your proof: e.g. how many cited pages in our data already ranked top 10}}
+P  Fix what search can see first. Comment AUDIT and I'll send the checklist we use.
+
+alt (high risk): "Stop buying GEO. Fix your SEO first."
+                 [RISK: strong public stance, confirm before posting]
 
 proof:      MISSING - flagged, not invented
 next:       /ig-reel or /ig-carousel with this PREP block

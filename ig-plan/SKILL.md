@@ -99,5 +99,19 @@ Say "write Tuesday" and I will draft it.
 ```
 
 Write the plan to `~/.claude/instagram/plan.md` so the other skills can read
-it. Nothing is scheduled or posted anywhere. This is a plan and the user runs
+it, and put the week in the content calendar:
+
+1. Write the week as a TSV with this header row:
+   `date  time  format  theme  pov  hook_formula  hook_line  example  ask  status  link  notes`
+   (`example` is the E in PREP: the proof the post will use. `status` starts
+   as `idea`.)
+2. Run `python3 calendar.py add week.tsv`. It merges into
+   `~/.claude/instagram/calendar.csv` without duplicating a date and format
+   already there.
+3. **If a Google Sheets connector is available**, also append the same rows to
+   the user's sheet "Instagram content calendar" (create it once with these
+   columns and keep its ID in `~/.claude/instagram/calendar.json`). Never
+   overwrite rows the user has edited; append, then update `status` only.
+4. As posts move along, `python3 calendar.py status 2026-10-28 REEL shot`.
+   `python3 calendar.py show` lists what is next and what is past its date. Nothing is scheduled or posted anywhere. This is a plan and the user runs
 it.

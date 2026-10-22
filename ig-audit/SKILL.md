@@ -16,7 +16,22 @@ The user's own last 30 posts are the evidence.
 
 ## Input
 
-Ask for whichever the user has:
+**If the user has set up the API**, pull the numbers instead of asking for
+screenshots:
+
+```bash
+python3 insights.py --limit 30 --out ~/.claude/instagram/insights.tsv
+```
+
+It reads `IG_ACCESS_TOKEN` (and optionally `IG_USER_ID`) from the environment,
+calls the official Instagram API read-only, and writes one row per post: reach,
+views, saves, shares, comments, follows, average watch time for Reels, save
+rate and share rate. Setup: an Instagram Business or Creator account, a Meta
+app using Instagram Login with `instagram_business_basic` and
+`instagram_business_manage_insights`, and a long-lived token. Never paste the
+token into chat or a file in the repo.
+
+Otherwise, ask for whichever the user has:
 
 - Insights per post: views, reach, interactions, watch time, saves, shares,
   follows, and the non-follower share of reach. Screenshots are fine.

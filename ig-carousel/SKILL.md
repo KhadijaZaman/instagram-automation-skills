@@ -70,6 +70,37 @@ LAST      CTA       one action. Save, comment a keyword, or follow. One.
 - **Alt text on the cover at minimum.** It is read by screen readers and by
   Instagram.
 
+## Voice pass (Khadija's voice)
+
+If the `khadija-voice` skill is installed, run it in polish mode on every line
+the user will say or post, after the draft and before `/ig-human`. If it is
+not, or if `~/.claude/instagram/voice.md` exists, apply these. They are the
+Instagram cut of `khadija-voice`, Appendix A.
+
+- **The voice:** a measured technical practitioner walking a peer through what
+  she has been looking at. A coffee chat with someone who knows the field, not
+  a guru, not a hype reel.
+- **Open with something real:** a specific scene ("I spent last Tuesday inside
+  our citation data"), a specific finding with its sample ("Across 1,200 SaaS
+  pages we tracked..."), a named source and their concept, or a tension (two
+  things that can't both be true). Never a topic opener, "it's no secret",
+  "most people don't realize", or "3 years ago I was X".
+- **Vary the rhythm.** Mix one long, flowing sentence with short ones. Never
+  three short punchy lines in a row when spoken; that is the guru cadence.
+  On-screen text cards can stay short.
+- **Name the source.** "Koray Gubur calls this topical borders", not "experts
+  say". Numbers are hers or marked `{{verify}}`.
+- **Honest hedges are fine, weasel hedges are not.** "From what we're seeing",
+  "across our dataset" yes. "Could potentially", "it's worth noting" no.
+- **Close with substance.** "If you're seeing something different in your
+  data, tell me" beats "Agree?". An ask is allowed when it delivers something
+  real (comment a keyword, get the checklist). Never bare engagement bait.
+- **No decorative emojis, no hype words** (game-changer, unlock, leverage,
+  supercharge, seamless).
+- **Default to low-risk stances** (methodological, observational,
+  definitional). A direct contradiction like "Stop buying GEO" gets
+  `[RISK: strong public stance, confirm before posting]`.
+
 ## Copy pass (from the copywriting skill)
 
 If the `copywriting` skill is installed, run its edit mode on the draft:
@@ -88,18 +119,34 @@ message first, then structure, then lines. If it is not, apply these:
 
 ## Building the files
 
-Instagram wants 1080x1350 (4:5), JPEG or PNG, up to 20 items. Build it as HTML
-and print each slide:
+Instagram wants 1080x1350 (4:5), JPEG or PNG, up to 20 items. `render.py` in
+this folder builds them. It needs no Python packages, only a Chrome or
+Chromium already on the machine (set `CHROME=/path/to/chrome` if it is not
+found).
+
+1. Write the approved copy to `slides.md`: one slide per block, blocks
+   separated by a line of `---`, first line is the headline, lines starting
+   with `- ` become list items. The first block is the cover.
+2. Run it:
 
 ```bash
-# one <section> per slide, 1080x1350, page-break-after: always
-# then Chrome headless --print-to-pdf, or any HTML-to-image you already use
+python3 render.py slides.md --out ./carousel --handle @yourhandle
 ```
 
-Write the HTML with `width:1080px; height:1350px`, a single accent colour, and
-type no smaller than 32px, because this is read on a phone at a third of its
-real size. If the project has a brand skill or a design system, use it and do
-not invent a palette.
+3. Fix every WARN it prints (cover over 6 words, a slide over 25 words, an em
+   dash) and re-run.
+
+Colours and fonts come from `~/.claude/instagram/brand.json` if it exists:
+
+```json
+{"background": "#F7F5F0", "text": "#1A1A1A", "accent": "#2B59C3",
+ "cover_background": "#1A1A1A", "cover_text": "#F7F5F0",
+ "google_font": "Inter:wght@400;600;800", "handle": "@yourhandle"}
+```
+
+Type is 40px body, 72px headlines, 104px cover, all inside a 120px margin, so
+the grid crop never cuts text. If the user has a brand skill, copy its colours
+into `brand.json` rather than inventing a palette.
 
 ## Output
 

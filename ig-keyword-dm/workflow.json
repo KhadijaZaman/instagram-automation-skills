@@ -1,0 +1,179 @@
+{
+  "name": "Instagram comment keyword to DM",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "ig-comments",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Meta verify (GET)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "ig-comments-get"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Meta calls this once when you subscribe the webhook.\nconst VERIFY_TOKEN = 'change-me-to-a-long-random-string';\nconst q = $input.first().json.query || {};\nif (q['hub.mode'] === 'subscribe' && q['hub.verify_token'] === VERIFY_TOKEN) {\n  return [{ json: { challenge: q['hub.challenge'] } }];\n}\nreturn [{ json: { challenge: 'forbidden' } }];\n"
+      },
+      "name": "Check verify token",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.challenge }}",
+        "options": {}
+      },
+      "name": "Return challenge",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ig-comments",
+        "options": {}
+      },
+      "name": "New comment (POST)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        240
+      ],
+      "webhookId": "ig-comments-post"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ---- EDIT THIS BLOCK -------------------------------------------------\n// One entry per keyword you ask for in a Reel. Write the DM with /ig-dm so\n// it sounds like you, then paste it here. Keep it plain: one link, no hype.\nconst MY_IG_USER_ID = 'your-instagram-user-id';   // so your own replies are ignored\nconst KEYWORDS = {\n  AUDIT: {\n    dm: \"Here's the GEO checklist from the reel: https://example.com/geo-checklist\\n\\n\" +\n        \"It's the same list we work through at Wellows before touching anything AI-specific. \" +\n        \"If something in it doesn't match what you're seeing in your own data, reply here. I want to hear about it.\",\n    reply: \"Sent it to your DMs.\",\n  },\n};\n// ---------------------------------------------------------------------\n\nconst out = [];\nconst body = $input.first().json.body || {};\nfor (const entry of body.entry || []) {\n  for (const change of entry.changes || []) {\n    if (change.field !== 'comments') continue;\n    const v = change.value || {};\n    if (!v.id || !v.text) continue;\n    if (v.from && v.from.id === MY_IG_USER_ID) continue;\n    const word = v.text.trim().replace(/[^\\p{L}\\p{N}]/gu, ' ').split(/\\s+/)[0].toUpperCase();\n    const match = KEYWORDS[word];\n    if (!match) continue;\n    out.push({ json: {\n      comment_id: v.id,\n      username: (v.from && v.from.username) || '',\n      keyword: word,\n      dm: match.dm,\n      reply: match.reply,\n    }});\n  }\n}\nreturn out;\n"
+      },
+      "name": "Match keyword",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.instagram.com/v23.0/me/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ recipient: { comment_id: $json.comment_id }, message: { text: $json.dm } }) }}",
+        "options": {}
+      },
+      "name": "Send private reply (DM)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.instagram.com/v23.0/{{ $('Match keyword').item.json.comment_id }}/replies",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $('Match keyword').item.json.reply }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Public reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        240
+      ]
+    }
+  ],
+  "connections": {
+    "Meta verify (GET)": {
+      "main": [
+        [
+          {
+            "node": "Check verify token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check verify token": {
+      "main": [
+        [
+          {
+            "node": "Return challenge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New comment (POST)": {
+      "main": [
+        [
+          {
+            "node": "Match keyword",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match keyword": {
+      "main": [
+        [
+          {
+            "node": "Send private reply (DM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send private reply (DM)": {
+      "main": [
+        [
+          {
+            "node": "Public reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
