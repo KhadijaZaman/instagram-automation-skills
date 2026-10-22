@@ -42,6 +42,31 @@ Otherwise, ask for whichever the user has:
 Also read `~/.claude/instagram/log.md` if it exists, since it records which
 hook formula each post used.
 
+## Run the analysis
+
+Once there are at least 5 posts in a table (from `insights.py`, or typed up
+from screenshots with the columns `date, type, reach, saved, shares`), run:
+
+```bash
+python3 analyze.py ~/.claude/instagram/insights.tsv --calendar ~/.claude/instagram/calendar.csv
+```
+
+It judges every post against the account's own median, never an outside
+benchmark:
+
+- **WORKING:** reach or saves+shares at 1.5x normal or more.
+- **NOT WORKING:** both at 0.6x normal or less.
+- Each post gets a reason: "hook travelled, content not kept", "kept but not
+  seen", and so on, because the fix is different for each.
+
+Then it groups posts by format, theme, hook formula and weekday (theme and
+hook come from the calendar) and calls each group DO MORE, STOP or rework,
+or one of the in-between diagnoses. A group with fewer than 3 posts is never
+called. Say that out loud rather than guessing.
+
+Read the posts behind every pattern before repeating it to the user. One
+outlier can carry a whole theme. Then use the sections below to explain why.
+
 ## What to actually measure
 
 Raw views is the least useful number on the page, because it is mostly a

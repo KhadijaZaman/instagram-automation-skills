@@ -38,6 +38,7 @@
 | `ig-carousel/render.py` | Slide copy to 1080x1350 PNGs | Chrome or Chromium |
 | `ig-subtitles/subtitles.py` | Captions SRT, optional burn-in | `faster-whisper` to transcribe, `ffmpeg` to burn |
 | `ig-audit/insights.py` | Post insights from the official API | `IG_ACCESS_TOKEN`, Business or Creator account |
+| `ig-audit/analyze.py` | What is working and what isn't, against your own median, by format, theme, hook and day | Python 3, 5+ posts |
 | `ig-plan/calendar.py` | Content calendar CSV, opens in Google Sheets | Python 3 |
 | `ig-keyword-dm/workflow.json` | Comment keyword to DM automation | n8n, Meta app with messaging access |
 | `ig-human/humanize.py`, `detect.py` | Strip and score AI tells | Python 3 |
