@@ -14,7 +14,10 @@ executed. Run it once a week, on the same day.
 
 ## Input
 
-If `~/.claude/instagram/voice.md`, `swipe.md` and `log.md` exist, read them.
+If `~/.claude/instagram/niche.md`, `voice.md`, `swipe.md`, `log.md` and
+`pov.md` exist, read them. `niche.md` sets the themes every post must sit
+inside; `pov.md` stops the week reusing an enemy from the last fortnight. Each
+planned post gets one line of POV from `/ig-pov`, not just a topic.
 The swipe file is the user's own evidence from `/ig-viral` about which formulas
 are landing in their niche right now, and it outranks anything in this file.
 The log stops the plan repeating a theme from the last fortnight.

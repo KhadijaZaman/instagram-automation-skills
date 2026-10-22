@@ -26,7 +26,17 @@ happening.
 
 If the idea is one claim, it is neither. Hand it to `/ig-reel` and say so.
 
-## Structure
+## Structure: PREP across the swipe
+
+Read `~/.claude/instagram/niche.md` first. If the idea is a topic rather than
+a claim, run `/ig-pov` and build on the PREP block it returns.
+
+| PREP | Slides |
+|---|---|
+| **P** Point | Cover: the POV in 6 words or fewer |
+| **R** Reason | Slide 2: what the enemy costs the reader |
+| **E** Example | Slides 3 to N: the proof and the steps, one per slide |
+| **P** Point | Recap and CTA: the Point restated, then one ask |
 
 6 to 10 slides. The cap is 20 and 20 is almost always a book nobody finishes.
 Under 5 and the swipe never starts.
@@ -59,6 +69,22 @@ LAST      CTA       one action. Save, comment a keyword, or follow. One.
   without you.
 - **Alt text on the cover at minimum.** It is read by screen readers and by
   Instagram.
+
+## Copy pass (from the copywriting skill)
+
+If the `copywriting` skill is installed, run its edit mode on the draft:
+message first, then structure, then lines. If it is not, apply these:
+
+- **One claim.** The Point is the claim. Anything that argues a second one gets
+  cut or becomes its own post.
+- **Specific beats adjectives.** "$4,200" beats "a lot", "top 10" beats "high".
+  No number? Ask for one or leave `{{your number}}`.
+- **So What chain to the end.** Tactic, then result, then what the viewer gains
+  in time, money or risk.
+- **The ask is verb plus what they get.** "Comment AUDIT for the checklist",
+  never "let me know your thoughts".
+- **Kill the AI accent.** No em dashes, no "it's not X, it's Y", no "whether
+  you're A or B", no tacked-on ", ensuring ...". `/ig-human` catches the rest.
 
 ## Building the files
 

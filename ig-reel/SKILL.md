@@ -24,6 +24,10 @@ python3 beats.py script.txt --target 30     # timed beat sheet before you shoot
 
 ## Before you write
 
+0. Read `~/.claude/instagram/niche.md` and check the idea against it. If the
+   idea is a topic ("SEO vs GEO") rather than a claim, run `/ig-pov` first and
+   build on the PREP block it returns. The script argues one point of view, in
+   one niche, for one audience.
 1. Read `~/.claude/instagram/voice.md` if it exists. That is the user's voice
    profile: how they talk on camera, what they never say, who they are talking
    to. If it does not exist, ask for **three of their own reels**, transcribe or
@@ -40,9 +44,22 @@ python3 beats.py script.txt --target 30     # timed beat sheet before you shoot
    file, and it is the user's own evidence about which formulas are working in
    their niche right now. It beats the defaults in this file.
 
-## The shape
+## The shape: PREP on a clock
 
-A Reel is decided in the first two seconds and kept by the next five.
+Every script follows PREP: **Point, Reason, Example, Point.** It is the
+copywriting rule "one claim, proof beside it, then the ask" fitted to a
+30-second clock. A Reel is decided in the first two seconds and kept by the
+next five.
+
+| PREP | Reel beat | Time | Job |
+|---|---|---|---|
+| **P** Point | HOOK | 0:00-0:02 | The POV as a claim. Spoken and on-screen, written separately. |
+| **R** Reason | THE STAKE | 0:02-0:07 | Why the viewer should care: what the enemy costs them. One line. |
+| **E** Example | THE BODY | 0:07-... | The proof, one beat at a time: a number, a name, a screen, a before and after. |
+| **P** Point | PAYOFF + LOOP | last 3s | The Point again in fewer words, the one ask, and a word from the hook. |
+
+If you cannot fill the Example row with something real, the Reel is not ready.
+Do not pad the body with more Reasons.
 
 ```
 0:00 - 0:02   HOOK        the claim. Spoken line and on-screen line, written
@@ -75,6 +92,10 @@ rehearse.
 a hook past 3 seconds, any beat over 4 seconds, a run of beats with nothing
 concrete in them, no loop. Re-run until it is clean.
 
+**4b. Copy pass.** Run the copy rules below on the script. Check PREP: is
+the Point one claim, does the Reason name a cost, is the Example real, does the
+last line restate the Point?
+
 **5. Humanize it.** Run the script through `/ig-human` before showing it. A
 written-sounding line is obvious the moment someone says it out loud.
 
@@ -84,6 +105,8 @@ separate list with timings, and then:
 ```
 REEL READY
 hook:       #3 Nobody Tells You, scored 86 STRONG
+POV:        from /ig-pov, enemy "GEO is a separate channel"
+PREP:       P hook / R 0:02 / E 0:07-0:22 / P 0:25
 length:     28.4s across 9 beats at 165 wpm
 on-screen:  6 cards
 humanizer:  4 artefacts stripped, human score 81 PASS
@@ -95,6 +118,22 @@ Reply "yes" to log it, or tell me what to change.
 **7. Never publish.** This skill produces a script. The user shoots it and
 posts it. On "yes", append to `~/.claude/instagram/log.md` with the date, the
 hook formula used and the first line, so `/ig-audit` has a history later.
+
+## Copy pass (from the copywriting skill)
+
+If the `copywriting` skill is installed, run its edit mode on the draft:
+message first, then structure, then lines. If it is not, apply these:
+
+- **One claim.** The Point is the claim. Anything that argues a second one gets
+  cut or becomes its own post.
+- **Specific beats adjectives.** "$4,200" beats "a lot", "top 10" beats "high".
+  No number? Ask for one or leave `{{your number}}`.
+- **So What chain to the end.** Tactic, then result, then what the viewer gains
+  in time, money or risk.
+- **The ask is verb plus what they get.** "Comment AUDIT for the checklist",
+  never "let me know your thoughts".
+- **Kill the AI accent.** No em dashes, no "it's not X, it's Y", no "whether
+  you're A or B", no tacked-on ", ensuring ...". `/ig-human` catches the rest.
 
 ## On-screen text is a separate script
 

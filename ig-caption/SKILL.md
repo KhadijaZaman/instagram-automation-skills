@@ -50,8 +50,30 @@ The ask     one. Comment a keyword, save it, or DM. One.
 Hashtags    up to five, on their own line at the bottom, or none.
 ```
 
+Inside the body, use **PREP**: the Point in line 1 (the same POV the reel or
+carousel argues, from `/ig-pov`), the Reason in the first paragraph, one
+Example with a real number or name, then the Point again in one line before
+the ask. Pull search terms from `~/.claude/instagram/niche.md` so the caption
+matches what the audience types.
+
 Limit is 2,200 characters and almost nothing needs 2,200. A caption that earns
 the tap and then delivers 600 characters beats one that delivers 1,800.
+
+## Copy pass (from the copywriting skill)
+
+If the `copywriting` skill is installed, run its edit mode on the draft:
+message first, then structure, then lines. If it is not, apply these:
+
+- **One claim.** The Point is the claim. Anything that argues a second one gets
+  cut or becomes its own post.
+- **Specific beats adjectives.** "$4,200" beats "a lot", "top 10" beats "high".
+  No number? Ask for one or leave `{{your number}}`.
+- **So What chain to the end.** Tactic, then result, then what the viewer gains
+  in time, money or risk.
+- **The ask is verb plus what they get.** "Comment AUDIT for the checklist",
+  never "let me know your thoughts".
+- **Kill the AI accent.** No em dashes, no "it's not X, it's Y", no "whether
+  you're A or B", no tacked-on ", ensuring ...". `/ig-human` catches the rest.
 
 ## Hashtags, honestly
 
@@ -100,7 +122,7 @@ python3 caption.py draft.txt --keywords "client proposals,agency pricing"
 
 1. Decide Job A or Job B and say which.
 2. Draft it.
-3. Run `/ig-human` on it. Captions are short, so slop is louder here than
+3. Copy pass: apply the copy rules below. Then run `/ig-human` on it. Captions are short, so slop is louder here than
    anywhere else in the pack.
 4. Run `caption.py` with the user's search terms. Fix every FAIL. Decide on
    every WARN out loud rather than silently.
