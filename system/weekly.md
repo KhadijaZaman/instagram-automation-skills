@@ -6,7 +6,7 @@ short summary. Never publish anything: publishing is n8n's job and only for
 rows Khadija marks `approved`.
 
 Sheet: `1ARiXXigTeGEHhrLYptkGRec0JJAmgDw165fMRLeKjeA`
-(tabs: Posts, Replies, Analytics, How it works). Timezone: Asia/Karachi.
+(tabs: Posts, Replies, Analytics, Inspiration, How it works). Timezone: Asia/Karachi.
 
 ## If the Google Sheets connector is missing
 If no `mcp__Google_Sheets__*` tools are available, do everything else anyway
@@ -30,6 +30,20 @@ scheduled task in claude.ai." Never stop silently.
    median_reach, median_saves_shares_pct, working, not_working, do_more
    (the DO MORE groups), stop_or_rework, top_post, worst_post, a two-sentence
    summary in plain words, and the full report text.
+
+## 1b. Inspiration
+Read the Inspiration tab rows with status `new`. Each has a reel link and
+Khadija's Meta AI breakdown (first line, length, cuts, structure, claim, ask,
+views). For each:
+1. Use `/ig-viral`'s method: name the hook formula from
+   `ig-reel/hooks.json`, note the structure and length. Copy the formula,
+   never the script, voice or edit.
+2. If views and the account's usual views are both given, compute the
+   multiple. Without both, mark it "unranked".
+3. Write back: hook_formula, pattern (one line), idea_for_us (one line, in
+   Khadija's niche, as a POV), status `used`.
+Feed the patterns into the plan below. A formula from Inspiration with a
+multiple of 3x or more beats the defaults.
 
 ## 2. Plan the week
 Run `/ig-plan` with: the analysis (DO MORE beats defaults, never plan a theme
