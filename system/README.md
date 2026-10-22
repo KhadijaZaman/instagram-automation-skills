@@ -11,7 +11,7 @@ human gate: nothing posts until Khadija marks it `approved`.
 | Monday, 15 min | Khadija | Read the Posts tab, edit, set `approved`. Record Reels and paste the video link. |
 | Every 15 min | n8n "IG Publisher" | Posts every `approved` row whose date and time have passed. Sends `approved` replies. Writes back `posted` / `failed`. |
 | Daily 17:52 | Claude scheduled task (`daily-replies.md`) | Drafts replies to new comments into the Replies tab as `draft`. |
-| Always | n8n "IG Comment keyword to DM" | Comment the keyword, get the DM, in seconds. |
+| Always | ManyChat | Comment the keyword, get the DM, in seconds. Copy written with `/ig-keyword-dm`. |
 
 The control panel is one Google Sheet:
 [Instagram content calendar](https://docs.google.com/spreadsheets/d/1ARiXXigTeGEHhrLYptkGRec0JJAmgDw165fMRLeKjeA/edit)
@@ -27,7 +27,7 @@ with tabs Posts, Replies, Analytics and How it works.
 | `upload.py` | Uploads slides or a Reel to Cloudinary, prints public URLs |
 | `comments.py` | Fetches new, unanswered comments (read-only) |
 | `state/niche.md`, `state/voice.md` | Niche profile and on-camera voice. Edit these here; every run reads them. |
-| `n8n/` | Source of the two n8n workflows |
+| `n8n/` | Source of the n8n publisher workflow |
 
 ## Setup checklist (once)
 
@@ -36,19 +36,18 @@ with tabs Posts, Replies, Analytics and How it works.
    Login, permissions `instagram_business_basic`,
    `instagram_business_content_publish`,
    `instagram_business_manage_insights`,
-   `instagram_business_manage_comments`,
-   `instagram_business_manage_messages`. Generate a long-lived token.
-   Messaging people outside the app's roles needs Advanced Access (App Review).
+   `instagram_business_manage_comments`. Generate a long-lived token.
+   (No messaging permission needed: ManyChat sends the DMs.)
 2. **Cloudinary.** Free account. Copy the `CLOUDINARY_URL` from the dashboard.
 3. **Claude cloud environment.** Add `IG_ACCESS_TOKEN` and `CLOUDINARY_URL`
    as secrets in the environment settings. Never paste them in chat or commit
    them.
 4. **n8n.** Create a Header Auth credential "Instagram token"
-   (`Authorization: Bearer <token>`). In both workflows, select it on the
-   HTTP nodes and select your Google Sheets account on the sheet nodes. Edit
-   the keyword map. Activate.
-5. **Meta webhook.** Subscribe the keyword-DM workflow's production URL to the
-   `comments` field.
+   (`Authorization: Bearer <token>`). In the publisher workflow, select it on
+   the HTTP nodes and select your Google Sheets account on the sheet nodes.
+   Activate.
+5. **ManyChat.** Connect Instagram, build one automation per keyword with
+   the copy from `/ig-keyword-dm`. Do not also run the n8n keyword workflow.
 6. **Proof bank.** Fill the `{{...}}` blanks in `state/niche.md` with numbers
    you are willing to say in public.
 

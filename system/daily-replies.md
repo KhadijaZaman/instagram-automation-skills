@@ -15,8 +15,8 @@ Sheet: `1ARiXXigTeGEHhrLYptkGRec0JJAmgDw165fMRLeKjeA`, tab Replies.
 4. Run `/ig-reply` on the new comments. It sorts them into KEYWORD, LEAD,
    SUBSTANCE, QUESTION, SUPPORT, NOISE and drafts replies in Khadija's voice
    (voice pass, then `/ig-human`).
-   - KEYWORD: no draft (the keyword DM automation handles it). status `skip`,
-     note "keyword, handled by n8n".
+   - KEYWORD: no draft (ManyChat handles it). status `skip`,
+     note "keyword, handled by ManyChat".
    - NOISE: no draft, status `skip`.
    - QUESTION: draft the reply AND add "reel idea: <question>" to notes.
 5. Append one row per comment to Replies: comment_id, post_permalink,
